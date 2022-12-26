@@ -9,11 +9,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     title: 'Uber Clone',
-     initialRoute: 'home',
-     routes: {
-      'home': (BuildContext context) => Home_Page(),
-     },
+      debugShowCheckedModeBanner: false,
+      title: 'Uber Clone',
+      initialRoute: 'home',
+      theme: ThemeData(
+        fontFamily: 'NimbusSans'
+      ),
+      routes: {
+        'home': (BuildContext context) => Home_Page(),
+      },
     );
   }
 }
