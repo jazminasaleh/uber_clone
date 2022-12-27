@@ -5,6 +5,7 @@ import 'package:flutter_uber/src/page/login/login_controller.dart';
 import 'package:flutter_uber/src/utils/colors.dart' as utils;
 import 'package:flutter_uber/src/widgets/button_app.dart';
 
+//*La pagina del login
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -13,8 +14,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  //*La logica de login, para obtener la infromacion de usuario y contraseña
   LoginController _con = new LoginController();
 
+  //*Como estamos en un statefulwidget se debe inicializar el constructor de la logica asi
   @override
   void initState() {
     super.initState();
@@ -28,6 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      //*Hacer scroll
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -77,12 +81,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-Widget _textFieldEmail(TextEditingController con) {
-  TextEditingController _con = con;
+//*Para el cudro de digitar el email
+Widget _textFieldEmail(TextEditingController correo) {
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 30),
     child: TextField(
-      controller: _con,
+      controller: correo,
       obscureText: false,
       cursorColor: utils.Colors.uberClonColor,
       decoration: InputDecoration(
@@ -100,12 +104,13 @@ Widget _textFieldEmail(TextEditingController con) {
   );
 }
 
-Widget _textFieldPassword(TextEditingController con) {
-  TextEditingController _con = con;
+//*Para el cuadro de digiatr la contraseña 
+//*El controller es para controlar la infromacion la contraseña
+Widget _textFieldPassword(TextEditingController contrasena) {
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 30),
     child: TextField(
-      controller: con,
+      controller: contrasena,
       obscureText: true,
       cursorColor: utils.Colors.uberClonColor,
       decoration: InputDecoration(
@@ -123,11 +128,14 @@ Widget _textFieldPassword(TextEditingController con) {
   );
 }
 
-Widget _buttonLogin( Function onPressed) {
+Widget _buttonLogin(Function onPressed) {
   return Container(
       margin: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
       child: ButtonApp(
-          colore: utils.Colors.uberClonColor, text: 'Iniciar sesion', onPressed: onPressed,));
+        colore: utils.Colors.uberClonColor,
+        text: 'Iniciar sesion',
+        onPressed: onPressed,
+      ));
 }
 
 Widget _textNoTieneCuenta() {
@@ -143,6 +151,7 @@ Widget _textNoTieneCuenta() {
 class _bannerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //*Clip es para la raya negra con relleno
     return ClipPath(
       clipper: WaveClipperTwo(),
       child: Container(

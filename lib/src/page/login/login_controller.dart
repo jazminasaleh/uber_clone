@@ -15,7 +15,6 @@ class LoginController {
   void login() {
     String email = emialController.text;
     String password = passwordController.text;
-    print(email);
-    print(password);
+    print('$email $password');
   }
 }

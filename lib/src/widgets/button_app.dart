@@ -31,7 +31,8 @@ class ButtonApp extends StatelessWidget {
                 child: Text(
                   text,
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                )),
+                )
+            ),
           ),
           Align(
             alignment: Alignment.centerRight,

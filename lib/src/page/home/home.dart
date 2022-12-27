@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_uber/src/page/home/home_controller.dart';
 
+//*Pagina principal de los roles 
 class Home_Page extends StatelessWidget {
   HomeController _con = new HomeController();
 
@@ -64,7 +65,7 @@ class Home_Page extends StatelessWidget {
   Widget _textTypeUser(String typeUser) {
     return Text(
       typeUser,
-      style: TextStyle(color: Colors.white, fontSize: 16),
+      style: const TextStyle(color: Colors.white, fontSize: 16),
     );
   }
 }
@@ -86,7 +87,7 @@ class _LineaNegra extends StatelessWidget {
               width: 150,
               height: 100,
             ),
-            Text(
+            const Text(
               'Facil y rapido',
               style: TextStyle(
                   fontFamily: 'Pacifico',
