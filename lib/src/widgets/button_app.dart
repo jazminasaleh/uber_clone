@@ -6,23 +6,32 @@ class ButtonApp extends StatelessWidget {
   Color textColor;
   String text;
   IconData icono;
+  Function onPressed;
 
   ButtonApp(
       {this.icono = Icons.arrow_forward_ios,
       this.textColor = Colors.white,
       this.colore = Colors.black54,
+      required this.onPressed,
       required this.text});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        onPressed();
+      },
       child: Stack(
         children: [
           Align(
             alignment: Alignment.center,
             child: Container(
-                height: 50, alignment: Alignment.center, child: Text(text, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),)),
+                height: 50,
+                alignment: Alignment.center,
+                child: Text(
+                  text,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                )),
           ),
           Align(
             alignment: Alignment.centerRight,

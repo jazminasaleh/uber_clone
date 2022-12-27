@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:flutter_uber/src/page/login/login_controller.dart';
 import 'package:flutter_uber/src/utils/colors.dart' as utils;
 import 'package:flutter_uber/src/widgets/button_app.dart';
 
@@ -11,11 +13,23 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  LoginController _con = new LoginController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      _con.init(context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: Column(
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Column(
           children: [
             _bannerApp(),
             SizedBox(
@@ -23,13 +37,17 @@ class _LoginPageState extends State<LoginPage> {
             ),
             _textDescripcion(),
             _textLogin(),
-            Expanded(child: Container()),
-            _textFieldEmail(),
-            _textFieldPassword(),
-            _buttonLogin(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.17,
+            ),
+            _textFieldEmail(_con.emialController),
+            _textFieldPassword(_con.passwordController),
+            _buttonLogin(_con.login),
             _textNoTieneCuenta()
           ],
-        ));
+        ),
+      ),
+    );
   }
 
   Widget _textDescripcion() {
@@ -59,10 +77,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-Widget _textFieldEmail() {
+Widget _textFieldEmail(TextEditingController con) {
+  TextEditingController _con = con;
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 30),
     child: TextField(
+      controller: _con,
       obscureText: false,
       cursorColor: utils.Colors.uberClonColor,
       decoration: InputDecoration(
@@ -80,10 +100,12 @@ Widget _textFieldEmail() {
   );
 }
 
-Widget _textFieldPassword() {
+Widget _textFieldPassword(TextEditingController con) {
+  TextEditingController _con = con;
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 30),
     child: TextField(
+      controller: con,
       obscureText: true,
       cursorColor: utils.Colors.uberClonColor,
       decoration: InputDecoration(
@@ -101,10 +123,11 @@ Widget _textFieldPassword() {
   );
 }
 
-Widget _buttonLogin() {
+Widget _buttonLogin( Function onPressed) {
   return Container(
-    margin: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
-    child: ButtonApp(colore: utils.Colors.uberClonColor, text: 'Iniciar sesion'));
+      margin: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+      child: ButtonApp(
+          colore: utils.Colors.uberClonColor, text: 'Iniciar sesion', onPressed: onPressed,));
 }
 
 Widget _textNoTieneCuenta() {
