@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:flutter_uber/page/home/home_controller.dart';
 
 class Home_Page extends StatelessWidget {
-  const Home_Page({super.key});
+  HomeController _con = new HomeController();
 
   @override
   Widget build(BuildContext context) {
+    _con.init(context);
     return Scaffold(
         backgroundColor: Colors.black,
         body: SafeArea(
           child: Container(
             //*degradado
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
@@ -19,26 +21,26 @@ class Home_Page extends StatelessWidget {
             child: Column(
               children: [
                 _LineaNegra(),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
-                Text(
+                const Text(
                   'SELECCIONA TU ROL',
                   style: TextStyle(color: Colors.white, fontFamily: 'OneDay'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                _imageTypeUser('assets/img/pasajero.png'),
-                SizedBox(
+                _imageTypeUser(context, 'assets/img/pasajero.png'),
+                const SizedBox(
                   height: 10,
                 ),
                 _textTypeUser('Cliente'),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                _imageTypeUser('assets/img/driver.png'),
-                SizedBox(
+                _imageTypeUser(context, 'assets/img/driver.png'),
+                const SizedBox(
                   height: 10,
                 ),
                 _textTypeUser('Conductor')
@@ -48,11 +50,14 @@ class Home_Page extends StatelessWidget {
         ));
   }
 
-  Widget _imageTypeUser(String ruta) {
-    return CircleAvatar(
-      backgroundImage: AssetImage(ruta),
-      radius: 50,
-      backgroundColor: Colors.grey[900],
+  Widget _imageTypeUser(BuildContext context, String ruta) {
+    return GestureDetector(
+      onTap: _con.goToLoginPage,
+      child: CircleAvatar(
+        backgroundImage: AssetImage(ruta),
+        radius: 50,
+        backgroundColor: Colors.grey[900],
+      ),
     );
   }
 
