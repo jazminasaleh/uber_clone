@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-import 'package:flutter_uber/page/home/home_controller.dart';
+import 'package:flutter_uber/src/page/home/home_controller.dart';
 
 class Home_Page extends StatelessWidget {
   HomeController _con = new HomeController();
